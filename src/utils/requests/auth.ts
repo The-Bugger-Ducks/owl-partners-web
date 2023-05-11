@@ -1,8 +1,6 @@
 import Endpoints from "../enums/endpoints";
 import api from "../../services/api";
 
-class DashboardRequests {
+class AuthRequests {}
 
-}
-
-export default new DashboardRequests()
+export default new AuthRequests();

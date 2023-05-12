@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import Dashboard from "./pages/Dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import Auth from "./pages/Auth/Auth";
 
 export default function MyRoutes() {

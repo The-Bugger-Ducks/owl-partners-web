@@ -11,11 +11,13 @@ import {
 import logo from "../../assets/logo.png";
 import dashboard from "../../assets/dashboard.png";
 import exit from "../../assets/exit.png";
+import StorageController from '../../utils/controllers/session'
 
 export default function Sidebar() {
   const navigate = useNavigate();
 
-  function handleLogoutUser() {
+  async function handleLogoutUser() {
+    await StorageController.clearRecords()
     navigate("/");
   }
 

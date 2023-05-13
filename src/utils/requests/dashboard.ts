@@ -1,4 +1,4 @@
-import Endpoints from "../enums/endpoints";
+import {Endpoints} from "../enums/endpoints";
 import api from "../../services/api";
 
 class DashboardRequests {}

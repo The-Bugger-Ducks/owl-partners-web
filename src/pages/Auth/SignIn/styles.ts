@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.main`
   height: 100vh;
-  background: #FAFAFA;
+  background: #fafafa;
 
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ export const Container = styled.main`
       line-height: 2.4rem;
 
       span {
-        font-weight: 100
+        font-weight: 100;
       }
     }
   }
@@ -41,12 +41,16 @@ export const Form = styled.form`
 
   @media screen and (max-width: 1000px) {
     width: auto;
-   }
+  }
 
-   p {
+  p {
     font-size: 0.875rem;
-    color: #EF4444;
-   }
+    color: #ef4444;
+
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
 `;
 
 export const ContentForm = styled.section`
@@ -66,11 +70,13 @@ export const ContentForm = styled.section`
   input {
     font-size: 0.875rem;
     color: #666666;
-    caret-color: #EF4444;
+    caret-color: #ef4444;
 
-    background: #FAFAFA;
+    background: #fafafa;
 
-    ::placeholder, :-ms-input-placeholder, ::-ms-input-placeholder {
+    ::placeholder,
+    :-ms-input-placeholder,
+    ::-ms-input-placeholder {
       color: #999999;
     }
   }
@@ -81,17 +87,17 @@ export const Input = styled.input`
   border-radius: 0.5rem;
   padding: 0px 1rem 0px 1rem;
 
-  background: #FAFAFA;
-  border: 1px solid #CCCCCC;
+  background: #fafafa;
+  border: 1px solid #cccccc;
 
   :focus {
     outline: none;
-    border:1px solid #666666;
+    border: 1px solid #666666;
   }
 `;
 
 export const PasswordInputContainer = styled.div<{
-  inFocus: boolean
+  inFocus: boolean;
 }>`
   display: flex;
   flex-direction: row;
@@ -104,7 +110,7 @@ export const PasswordInputContainer = styled.div<{
 
   border: 1px solid;
 
-  border-color: ${({ inFocus }) => inFocus ? "#666666" : "#cccccc"};
+  border-color: ${({ inFocus }) => (inFocus ? "#666666" : "#cccccc")};
 `;
 
 export const InputPassword = styled.input`
@@ -119,9 +125,11 @@ export const InputPassword = styled.input`
 `;
 
 export const IconButton = styled.button`
+  background-color: #fafafa;
   align-items: center;
   justify-content: center;
   justify-self: flex-end;
+  cursor: pointer;
 `;
 
 export const Button = styled.button`
@@ -129,14 +137,17 @@ export const Button = styled.button`
   width: 100%;
   border-radius: 3rem;
 
-  background: ${props => props.disabled ? "#CCCCCC":"#EF4444"};
-  color: #FFFFFF;
+  background: ${(props) => (props.disabled ? "#CCCCCC" : "#EF4444")};
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #ffffff;
   font-weight: 400;
   font-size: 1rem;
 
   :hover {
-    cursor: ${props => props.disabled ? "auto":"pointer"}
+    cursor: ${(props) => (props.disabled ? "auto" : "pointer")};
   }
 `;
-

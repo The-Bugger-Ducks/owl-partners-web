@@ -1,9 +1,12 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
 
 import authRequest from "../../../utils/requests/auth";
-
 import StorageController from "../../../utils/controllers/session"
+
+import Icon from "../../../components/Icon";
+import Loading from "../../../components/Loading";
 
 import { Button, Container, ContentForm, Form, IconButton, Input, InputPassword, PasswordInputContainer } from "./styles";
 
@@ -64,7 +67,7 @@ export default function SignIn() {
       <section className="login-welcome">
         <h4>Bem-vindo(a) ao</h4>
         <h1>
-          OLW<span>PARTNERS</span>
+          OWL<span>PARTNERS</span>
         </h1>
       </section>
       <Form onSubmit={authenticate}>
@@ -95,12 +98,18 @@ export default function SignIn() {
               type="button"
               onClick={() => setVisiblePassword(!visiblePassword)}
             >
-              {visiblePassword ? "x" : "y"}
+              {visiblePassword ? <Icon icon="eye" width={20} height={20} /> : <Icon icon="eye-hidden" width={20} height={20}/>}
             </IconButton>
           </PasswordInputContainer>
-          {message && <p>{message}</p>}
+          {message && (
+            <p>
+              <Icon icon="info-red" /> {message}
+            </p>
+          )}
         </ContentForm>
-        <Button type="submit" disabled={!email || !password}>Fazer Login</Button>
+        <Button type="submit" disabled={!email || !password}>
+          {!loading ? "Fazer Login" : <Loading />}
+        </Button>
       </Form>
     </Container>
   );

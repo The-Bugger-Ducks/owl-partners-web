@@ -1,4 +1,4 @@
-import User from "../interfaces/user";
+import {IUser} from "../interfaces/user";
 
 class SessionController {
   clearRecords() {
@@ -19,7 +19,7 @@ class SessionController {
     return token;
   }
 
-  setUserInfo(user: User) {
+  setUserInfo(user: IUser) {
     sessionStorage.setItem("user_data", JSON.stringify(user));
   }
 
@@ -28,7 +28,7 @@ class SessionController {
 
     if (!sessionUser) return null;
 
-    const user: User = JSON.parse(sessionUser);
+    const user: IUser = JSON.parse(sessionUser);
 
     return user;
   }

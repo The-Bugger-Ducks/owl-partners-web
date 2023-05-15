@@ -1,6 +1,6 @@
 import UserRole from "../enums/userRole";
 
-interface User {
+export interface IUser {
   id: string;
   name: string;
   lastName: string;
@@ -9,4 +9,12 @@ interface User {
   createdAt: Date;
 }
 
-export default User;
+export interface IUserAuthenticated {
+  token: string;
+  user: IUser;
+}
+
+export interface IUserLogin {
+  email: string;
+  password: string;
+}

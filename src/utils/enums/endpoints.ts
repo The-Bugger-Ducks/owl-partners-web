@@ -1,6 +1,8 @@
-enum Endpoints {
+export enum Endpoints {
   DASHBOARD = "/dashboard",
   AUTH = "/auth",
 }
 
-export default Endpoints;
+export enum USER_ENDPOINTS {
+  USER_LOGIN = "/auth/login",
+}

@@ -67,7 +67,7 @@ export default function SignIn() {
       <section className="login-welcome">
         <h4>Bem-vindo(a) ao</h4>
         <h1>
-          OLW<span>PARTNERS</span>
+          OWL<span>PARTNERS</span>
         </h1>
       </section>
       <Form onSubmit={authenticate}>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../../components/Sidebar";
-import { Container } from "./styles";
+import { Container, Header, Title } from "./styles";
 import dashboardRequests from "../../utils/requests/dashboard";
 import { default as DashboardInterface } from "../../utils/interfaces/dashboard";
 
@@ -14,14 +14,17 @@ export default function Dashboard() {
   const getDashboardData = async () => {
     const data = await dashboardRequests.get();
     if (data !== "error") setDashboardData(data);
-
-    console.log(data);
   };
 
   return (
     <>
       <Sidebar />
-      <Container>Olá, mundo 🌏 Dashboard</Container>
+
+      <Container>
+        <Header>
+          <Title>Dashboard: Análise de parcerias em desenvolvimento</Title>
+        </Header>
+      </Container>
     </>
   );
 }

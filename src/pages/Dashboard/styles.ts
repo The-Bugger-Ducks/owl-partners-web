@@ -21,10 +21,39 @@ export const Title = styled.h1`
 
   &:before {
     content: "";
-    background: url("https://raw.githubusercontent.com/The-Bugger-Ducks/owl-partners-web/35e3272c5760a391bb8eaa3b3cab644d558aef9b/src/assets/icons/big-menu.svg")
+    background: url("https://raw.githubusercontent.com/The-Bugger-Ducks/owl-partners-web/b562845db34d3c7ea408cfed95a09dc72f78ba0c/src/assets/icons/big-menu.svg")
       no-repeat;
     width: 2rem;
     height: 2rem;
+    float: left;
+    margin: 0 8px 0 0;
+  }
+`;
+
+export const Description = styled.h1`
+  font-weight: 500;
+  font-size: 1rem;
+  color: #666666;
+`;
+
+export const ReloadButton = styled.a`
+  position: fixed;
+  top: 2.5rem;
+  right: 2.25rem;
+  z-index: 1000 !important;
+
+  text-decoration: none;
+  cursor: pointer;
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 16px;
+
+  &:before {
+    content: "";
+    background: url("https://raw.githubusercontent.com/The-Bugger-Ducks/owl-partners-web/b562845db34d3c7ea408cfed95a09dc72f78ba0c/src/assets/icons/refresh-red.svg")
+      no-repeat;
+    width: 1.5rem;
+    height: 1.5rem;
     float: left;
     margin: 0 8px 0 0;
   }

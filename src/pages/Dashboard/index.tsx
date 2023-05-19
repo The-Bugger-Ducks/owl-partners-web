@@ -14,6 +14,8 @@ export default function Dashboard() {
   const getDashboardData = async () => {
     const data = await dashboardRequests.get();
     if (data !== "error") setDashboardData(data);
+
+    console.log(data);
   };
 
   return (

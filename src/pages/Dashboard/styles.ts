@@ -48,9 +48,13 @@ export const ReloadButton = styled.a`
   font-weight: 600;
   font-size: 16px;
 
+  &:hover {
+    filter: brightness(120%) saturate(120%);
+  }
+
   &:before {
     content: "";
-    background: url("https://raw.githubusercontent.com/The-Bugger-Ducks/owl-partners-web/b562845db34d3c7ea408cfed95a09dc72f78ba0c/src/assets/icons/refresh-red.svg")
+    background: url("https://raw.githubusercontent.com/The-Bugger-Ducks/owl-partners-web/07d5546080a78d7f072d9db61dbd32fddd4f05b3/src/assets/icons/refresh-red.svg")
       no-repeat;
     width: 1.5rem;
     height: 1.5rem;

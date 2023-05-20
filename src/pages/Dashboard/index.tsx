@@ -11,8 +11,7 @@ export default function Dashboard() {
   const dashboardSuccessToast = () =>
     toast.success("Dashboard carregada com sucesso!");
 
-  const dashboardErrorToast = () =>
-    toast.error("Erro ao carregar dados da dashboard.");
+  const dashboardErrorToast = () => toast.error("Erro ao carregar dashboard.");
 
   useEffect(() => {
     getDashboardData();

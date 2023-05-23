@@ -4,7 +4,16 @@ import dashboardRequests from "../../utils/requests/dashboard";
 import { default as DashboardInterface } from "../../utils/interfaces/dashboard";
 import toast, { Toaster } from "react-hot-toast";
 import Loading from "../../components/Loading";
-import { Container, Description, Header, Title, ReloadButton } from "./styles";
+import Card from "../../components/Card";
+import {
+  Container,
+  Description,
+  Header,
+  Title,
+  ReloadButton,
+  Cards,
+} from "./styles";
+import moment from "moment";
 
 export default function Dashboard() {
   const [dashboardData, setDashboardData] = useState<DashboardInterface>();
@@ -59,7 +68,51 @@ export default function Dashboard() {
           </Description>
         </Header>
 
-        {isLoading ? <Loading width="100px" height="100px" /> : ""}
+        {isLoading ? (
+          <Loading width="100px" height="100px" />
+        ) : (
+          <Cards>
+            <Card
+              gridArea="totalActivePartners"
+              title="Total de parcerias em desenvolvimento"
+              textInformation={{
+                label: "Parcerias em desenvolvimento",
+                data: dashboardData
+                  ? `${dashboardData.totalActivePartners}`
+                  : "Informação não identificada",
+              }}
+            />
+
+            <Card
+              gridArea="top10MostMembers"
+              title="TOP 10 Parcerias com maior quantidade de membros"
+            />
+
+            <Card gridArea="partnersPerStatus" title="Parcerias por status" />
+
+            <Card gridArea="partnersPerState" title="Parcerias por estado" />
+
+            <Card
+              gridArea="partnerPerClassification"
+              title="Parcerias por classificação"
+            />
+
+            <Card
+              gridArea="nextMeeting"
+              title="Próxima reunião agendada"
+              textInformation={{
+                label: dashboardData
+                  ? `${moment(
+                      new Date(dashboardData.nextMeeting.createdAt)
+                    ).format("DD/MM/YYYY, HH:mm")}`
+                  : "Informação não identificada",
+                data: dashboardData
+                  ? `${dashboardData.nextMeeting.title}`
+                  : "---",
+              }}
+            />
+          </Cards>
+        )}
       </Container>
     </>
   );

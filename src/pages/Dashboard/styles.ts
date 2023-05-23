@@ -5,6 +5,7 @@ export const Container = styled.div`
   height: 100vh;
   margin-left: 8rem;
   padding: 2.25rem;
+  overflow-y: auto;
 `;
 
 export const Header = styled.header`
@@ -36,7 +37,7 @@ export const Description = styled.h1`
 `;
 
 export const ReloadButton = styled.a`
-  position: fixed;
+  position: absolute;
   top: 2.5rem;
   right: 2.25rem;
   z-index: 1000 !important;
@@ -60,4 +61,16 @@ export const ReloadButton = styled.a`
     float: left;
     margin: 0 8px 0 0;
   }
+`;
+
+export const Cards = styled.main`
+  margin: 3rem 0 0 0;
+  display: grid;
+  gap: 2rem;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "totalActivePartners top10MostMembers"
+    "partnersPerStatus partnersPerStatus"
+    "partnersPerState partnersPerState"
+    "partnerPerClassification nextMeeting";
 `;

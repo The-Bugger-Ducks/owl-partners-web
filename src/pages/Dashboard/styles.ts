@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -38,8 +39,8 @@ export const Description = styled.h1`
 
 export const ReloadButton = styled.a`
   position: absolute;
-  top: 2.5rem;
-  right: 2.25rem;
+  overflow: auto;
+  right: 0;
   z-index: 1000 !important;
 
   text-decoration: none;

@@ -1,8 +1,10 @@
 import { LoadingContainer } from "./styles";
 
-export default function Loading() {
+interface Props {
+  height?: string;
+  width?: string;
+}
 
-  return (
-    <LoadingContainer />
-  );
+export default function Loading({ height, width }: Props) {
+  return <LoadingContainer height={height} width={width} />;
 }

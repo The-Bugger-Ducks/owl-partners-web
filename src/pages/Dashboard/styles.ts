@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import dashboard from "../../assets/dashboard.png";
 
 export const Container = styled.div`
   background: #f4f4f4;

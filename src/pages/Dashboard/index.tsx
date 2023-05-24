@@ -44,6 +44,7 @@ export default function Dashboard() {
       return;
     }
 
+    console.log(data);
     setDashboardData(data);
     dashboardSuccessToast();
   };
@@ -86,15 +87,73 @@ export default function Dashboard() {
             <Card
               gridArea="top10MostMembers"
               title="TOP 10 Parcerias com maior quantidade de membros"
+              chartInformation={
+                dashboardData
+                  ? dashboardData.top10MostMembers.reduce(
+                      (prev: any, curr: any) => {
+                        return [
+                          ...prev,
+                          { name: curr.name, total: curr.memberNumber ?? 0 },
+                        ];
+                      },
+                      []
+                    )
+                  : undefined
+              }
             />
 
-            <Card gridArea="partnersPerStatus" title="Parcerias por status" />
+            <Card
+              gridArea="partnersPerStatus"
+              title="Parcerias por status"
+              chartInformation={
+                dashboardData
+                  ? dashboardData.partnersPerStatus.reduce(
+                      (prev: any, curr: any) => {
+                        return [
+                          ...prev,
+                          { name: curr.status, total: curr._count },
+                        ];
+                      },
+                      []
+                    )
+                  : undefined
+              }
+            />
 
-            <Card gridArea="partnersPerState" title="Parcerias por estado" />
+            <Card
+              gridArea="partnersPerState"
+              title="Parcerias por estado"
+              chartInformation={
+                dashboardData
+                  ? dashboardData.partnersPerState.reduce(
+                      (prev: any, curr: any) => {
+                        return [
+                          ...prev,
+                          { name: curr.state, total: curr._count },
+                        ];
+                      },
+                      []
+                    )
+                  : undefined
+              }
+            />
 
             <Card
               gridArea="partnerPerClassification"
               title="Parcerias por classificação"
+              chartInformation={
+                dashboardData
+                  ? dashboardData.partnerPerClassification.reduce(
+                      (prev: any, curr: any) => {
+                        return [
+                          ...prev,
+                          { name: curr.classification, total: curr._count },
+                        ];
+                      },
+                      []
+                    )
+                  : undefined
+              }
             />
 
             <Card

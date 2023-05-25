@@ -5,6 +5,8 @@ import { default as DashboardInterface } from "../../utils/interfaces/dashboard"
 import toast, { Toaster } from "react-hot-toast";
 import Loading from "../../components/Loading";
 import Card from "../../components/Card";
+import moment from "moment";
+import formatLabel from "../../utils/handlers/formatLabel";
 import {
   Container,
   Description,
@@ -13,7 +15,6 @@ import {
   ReloadButton,
   Cards,
 } from "./styles";
-import moment from "moment";
 
 export default function Dashboard() {
   const [dashboardData, setDashboardData] = useState<DashboardInterface>();
@@ -93,7 +94,10 @@ export default function Dashboard() {
                       (prev: any, curr: any) => {
                         return [
                           ...prev,
-                          { name: curr.name, total: curr.memberNumber ?? 0 },
+                          {
+                            name: curr.name,
+                            total: curr.memberNumber ?? 0,
+                          },
                         ];
                       },
                       []
@@ -111,7 +115,10 @@ export default function Dashboard() {
                       (prev: any, curr: any) => {
                         return [
                           ...prev,
-                          { name: curr.status, total: curr._count },
+                          {
+                            name: formatLabel(curr.status),
+                            total: curr._count,
+                          },
                         ];
                       },
                       []
@@ -129,7 +136,10 @@ export default function Dashboard() {
                       (prev: any, curr: any) => {
                         return [
                           ...prev,
-                          { name: curr.state, total: curr._count },
+                          {
+                            name: curr.state,
+                            total: curr._count,
+                          },
                         ];
                       },
                       []
@@ -147,7 +157,10 @@ export default function Dashboard() {
                       (prev: any, curr: any) => {
                         return [
                           ...prev,
-                          { name: curr.classification, total: curr._count },
+                          {
+                            name: formatLabel(curr.classification),
+                            total: curr._count,
+                          },
                         ];
                       },
                       []

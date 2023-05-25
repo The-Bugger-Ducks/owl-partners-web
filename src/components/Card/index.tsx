@@ -1,8 +1,8 @@
 import { Container, InnerContainer, Title, Data, Label } from "./styles";
+
 import {
   BarChart,
   Bar,
-  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -30,6 +30,12 @@ export default function Card({
   textInformation,
   chartInformation,
 }: Props) {
+  const tickFormatter = (value: string, index: number) => {
+    const limit = 3;
+    if (value.length < 5) return value;
+    return `${value.substring(0, limit)}...`;
+  };
+
   return (
     <Container gridArea={gridArea}>
       <Title>{title}</Title>

@@ -31,8 +31,9 @@ export default function Card({
   chartInformation,
 }: Props) {
   const tickFormatter = (value: string, index: number) => {
-    const limit = 3;
-    if (value.length < 5) return value;
+    const windowWidth = window.innerWidth;
+    const limit = windowWidth <= 1440 ? 3 : 7;
+    if (value.length <= 5) return value;
     return `${value.substring(0, limit)}...`;
   };
 
@@ -57,7 +58,7 @@ export default function Card({
               margin={{ top: 32, right: 16, left: 0, bottom: 16 }}
             >
               <CartesianGrid strokeDasharray="3" />
-              <XAxis dataKey="name" />
+              <XAxis dataKey="name" tickFormatter={tickFormatter} />
               <YAxis />
               <Tooltip />
               <Bar dataKey="total" name="Quantidade" fill="#ec7575" />

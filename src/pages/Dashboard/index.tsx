@@ -45,7 +45,6 @@ export default function Dashboard() {
       return;
     }
 
-    console.log(data);
     setDashboardData(data);
     dashboardSuccessToast();
   };

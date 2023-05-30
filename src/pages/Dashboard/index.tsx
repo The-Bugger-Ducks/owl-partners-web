@@ -29,11 +29,11 @@ export default function Dashboard() {
     getDashboardData();
   }, []);
 
-  const refreshPage = async () => {
+  async function refreshPage() {
     await getDashboardData();
-  };
+  }
 
-  const getDashboardData = async () => {
+  async function getDashboardData() {
     setIsLoading(true);
 
     const data = await dashboardRequests.get();
@@ -47,7 +47,7 @@ export default function Dashboard() {
 
     setDashboardData(data);
     dashboardSuccessToast();
-  };
+  }
 
   return (
     <>
@@ -88,20 +88,19 @@ export default function Dashboard() {
               gridArea="top10MostMembers"
               title="TOP 10 Parcerias com maior quantidade de membros"
               chartInformation={
-                dashboardData
-                  ? dashboardData.top10MostMembers.reduce(
-                      (prev: any, curr: any) => {
-                        return [
-                          ...prev,
-                          {
-                            name: curr.name,
-                            total: curr.memberNumber ?? 0,
-                          },
-                        ];
+                dashboardData &&
+                dashboardData.top10MostMembers.reduce(
+                  (prev: any, curr: any) => {
+                    return [
+                      ...prev,
+                      {
+                        name: curr.name,
+                        total: curr.memberNumber ?? 0,
                       },
-                      []
-                    )
-                  : undefined
+                    ];
+                  },
+                  []
+                )
               }
             />
 
@@ -109,20 +108,19 @@ export default function Dashboard() {
               gridArea="partnersPerStatus"
               title="Parcerias por status"
               chartInformation={
-                dashboardData
-                  ? dashboardData.partnersPerStatus.reduce(
-                      (prev: any, curr: any) => {
-                        return [
-                          ...prev,
-                          {
-                            name: formatLabel(curr.status),
-                            total: curr._count,
-                          },
-                        ];
+                dashboardData &&
+                dashboardData.partnersPerStatus.reduce(
+                  (prev: any, curr: any) => {
+                    return [
+                      ...prev,
+                      {
+                        name: formatLabel(curr.status),
+                        total: curr._count,
                       },
-                      []
-                    )
-                  : undefined
+                    ];
+                  },
+                  []
+                )
               }
             />
 
@@ -130,20 +128,19 @@ export default function Dashboard() {
               gridArea="partnersPerState"
               title="Parcerias por estado"
               chartInformation={
-                dashboardData
-                  ? dashboardData.partnersPerState.reduce(
-                      (prev: any, curr: any) => {
-                        return [
-                          ...prev,
-                          {
-                            name: curr.state,
-                            total: curr._count,
-                          },
-                        ];
+                dashboardData &&
+                dashboardData.partnersPerState.reduce(
+                  (prev: any, curr: any) => {
+                    return [
+                      ...prev,
+                      {
+                        name: curr.state,
+                        total: curr._count,
                       },
-                      []
-                    )
-                  : undefined
+                    ];
+                  },
+                  []
+                )
               }
             />
 
@@ -151,20 +148,19 @@ export default function Dashboard() {
               gridArea="partnerPerClassification"
               title="Parcerias por classificação"
               chartInformation={
-                dashboardData
-                  ? dashboardData.partnerPerClassification.reduce(
-                      (prev: any, curr: any) => {
-                        return [
-                          ...prev,
-                          {
-                            name: formatLabel(curr.classification),
-                            total: curr._count,
-                          },
-                        ];
+                dashboardData &&
+                dashboardData.partnerPerClassification.reduce(
+                  (prev: any, curr: any) => {
+                    return [
+                      ...prev,
+                      {
+                        name: formatLabel(curr.classification),
+                        total: curr._count,
                       },
-                      []
-                    )
-                  : undefined
+                    ];
+                  },
+                  []
+                )
               }
             />
 

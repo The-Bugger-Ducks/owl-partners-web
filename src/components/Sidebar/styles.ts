@@ -8,7 +8,7 @@ interface NavbarLinkProps {
 export const Container = styled.aside`
   background: #ffffff;
   width: 8rem;
-  height: 91%;
+  height: 100%;
   padding: 2rem 0rem;
   display: flex;
   flex-direction: column;
@@ -17,6 +17,8 @@ export const Container = styled.aside`
 
   position: fixed;
   z-index: 1000 !important;
+
+  box-shadow: 10px 0px 32px rgba(204, 204, 204, 0.1);
 `;
 
 export const Navbar = styled.div`

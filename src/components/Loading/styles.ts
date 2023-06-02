@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
-export const LoadingContainer = styled.div`
+interface Props {
+  height?: string;
+  width?: string;
+}
+
+export const LoadingContainer = styled.div<Props>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80%;
+
   :before {
     content: "";
     display: block;
-    height: 20px;
-    width: 20px;
+    height: ${(props) => props.height ?? "20px"};
+    width: ${(props) => props.width ?? "20px"};
     -webkit-animation: spin 0.9s infinite linear;
     animation: spin 0.9s infinite linear;
     border: 4px #fcfcfc solid;

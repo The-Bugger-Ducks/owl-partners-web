@@ -8,16 +8,16 @@ import {
   NavbarSpan,
   NavbarImage,
 } from "./styles";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.svg";
 import dashboard from "../../assets/dashboard.png";
 import exit from "../../assets/exit.png";
-import StorageController from '../../utils/controllers/session'
+import StorageController from "../../utils/controllers/session";
 
 export default function Sidebar() {
   const navigate = useNavigate();
 
   async function handleLogoutUser() {
-    await StorageController.clearRecords()
+    await StorageController.clearRecords();
     navigate("/");
   }
 

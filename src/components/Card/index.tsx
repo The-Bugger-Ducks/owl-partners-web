@@ -1,15 +1,21 @@
-import { Container, InnerContainer, Title, Data, Label } from "./styles";
-
 import {
-  BarChart,
   Bar,
-  XAxis,
-  YAxis,
+  BarChart,
   CartesianGrid,
-  Tooltip,
   Legend,
   ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
 } from "recharts";
+import {
+  Container,
+  Data,
+  Description,
+  InnerContainer,
+  Label,
+  Title,
+} from "./styles";
 
 interface Props {
   gridArea:
@@ -20,7 +26,7 @@ interface Props {
     | "partnerPerClassification"
     | "nextMeeting";
   title: string;
-  textInformation?: { label: string; data: string };
+  textInformation?: { label: string; data: string; description?: string };
   chartInformation?: { name: string; total: number }[];
 }
 
@@ -45,6 +51,7 @@ export default function Card({
         <InnerContainer>
           <Data>{textInformation.data}</Data>
           <Label>{textInformation.label}</Label>
+          <Description>{textInformation.description}</Description>
         </InnerContainer>
       )}
 

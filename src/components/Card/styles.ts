@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Text } from "recharts";
 
 interface Props {
   gridArea: string;
@@ -53,5 +52,13 @@ export const Label = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
+  color: #666666;
+`;
+
+export const Description = styled.p`
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
   color: #666666;
 `;

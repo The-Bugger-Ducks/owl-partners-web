@@ -1,52 +1,41 @@
-import { useEffect, useState } from "react";
-import Sidebar from "../../components/Sidebar";
-import dashboardRequests from "../../utils/requests/dashboard";
-import { default as DashboardInterface } from "../../utils/interfaces/dashboard";
-import toast, { Toaster } from "react-hot-toast";
-import Loading from "../../components/Loading";
-import Card from "../../components/Card";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import Card from "../../components/Card";
+import Loading from "../../components/Loading";
+import Sidebar from "../../components/Sidebar";
 import formatLabel from "../../utils/handlers/formatLabel";
+import { default as DashboardInterface } from "../../utils/interfaces/dashboard";
+import dashboardRequests from "../../utils/requests/dashboard";
 import {
+  Cards,
   Container,
   Description,
   Header,
-  Title,
   ReloadButton,
-  Cards,
+  Title,
 } from "./styles";
 
 export default function Dashboard() {
   const [dashboardData, setDashboardData] = useState<DashboardInterface>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const dashboardSuccessToast = () =>
-    toast.success("Dashboard carregada com sucesso!");
-
-  const dashboardErrorToast = () => toast.error("Erro ao carregar dashboard.");
-
   useEffect(() => {
     getDashboardData();
   }, []);
 
-  async function refreshPage() {
-    await getDashboardData();
-  }
-
   async function getDashboardData() {
     setIsLoading(true);
-
     const data = await dashboardRequests.get();
 
-    setIsLoading(false);
-
     if (data === "error") {
-      dashboardErrorToast();
+      toast.error("Erro ao carregar dashboard.");
       return;
     }
 
     setDashboardData(data);
-    dashboardSuccessToast();
+    setIsLoading(false);
+    toast.success("Dashboard carregada com sucesso!");
   }
 
   return (
@@ -57,7 +46,7 @@ export default function Dashboard() {
 
       <Container>
         <Header>
-          <ReloadButton onClick={refreshPage}>
+          <ReloadButton onClick={() => getDashboardData()}>
             Recarregar dashboard
           </ReloadButton>
 
@@ -87,81 +76,69 @@ export default function Dashboard() {
             <Card
               gridArea="top10MostMembers"
               title="TOP 10 Parcerias com maior quantidade de membros"
-              chartInformation={
-                dashboardData &&
-                dashboardData.top10MostMembers.reduce(
-                  (prev: any, curr: any) => {
-                    return [
-                      ...prev,
-                      {
-                        name: curr.name,
-                        total: curr.memberNumber ?? 0,
-                      },
-                    ];
-                  },
-                  []
-                )
-              }
+              chartInformation={dashboardData?.top10MostMembers.reduce(
+                (prev: any, curr: any) => {
+                  return [
+                    ...prev,
+                    {
+                      name: curr.name,
+                      total: curr.memberNumber ?? 0,
+                    },
+                  ];
+                },
+                []
+              )}
             />
 
             <Card
               gridArea="partnersPerStatus"
               title="Parcerias por status"
-              chartInformation={
-                dashboardData &&
-                dashboardData.partnersPerStatus.reduce(
-                  (prev: any, curr: any) => {
-                    return [
-                      ...prev,
-                      {
-                        name: formatLabel(curr.status),
-                        total: curr._count,
-                      },
-                    ];
-                  },
-                  []
-                )
-              }
+              chartInformation={dashboardData?.partnersPerStatus.reduce(
+                (prev: any, curr: any) => {
+                  return [
+                    ...prev,
+                    {
+                      name: formatLabel(curr.status),
+                      total: curr._count,
+                    },
+                  ];
+                },
+                []
+              )}
             />
 
             <Card
               gridArea="partnersPerState"
               title="Parcerias por estado"
-              chartInformation={
-                dashboardData &&
-                dashboardData.partnersPerState.reduce(
-                  (prev: any, curr: any) => {
-                    return [
-                      ...prev,
-                      {
-                        name: curr.state,
-                        total: curr._count,
-                      },
-                    ];
-                  },
-                  []
-                )
-              }
+              chartInformation={dashboardData?.partnersPerState.reduce(
+                (prev: any, curr: any) => {
+                  return [
+                    ...prev,
+                    {
+                      name: curr.state,
+                      total: curr._count,
+                    },
+                  ];
+                },
+                []
+              )}
             />
 
             <Card
               gridArea="partnerPerClassification"
               title="Parcerias por classificação"
-              chartInformation={
-                dashboardData &&
-                dashboardData.partnerPerClassification.reduce(
-                  (prev: any, curr: any) => {
-                    return [
-                      ...prev,
-                      {
-                        name: formatLabel(curr.classification),
-                        total: curr._count,
-                      },
-                    ];
-                  },
-                  []
-                )
-              }
+              chartInformation={dashboardData?.partnerPerClassification.reduce(
+                (prev: any, curr: any) => {
+                  return [
+                    ...prev,
+                    {
+                      name: formatLabel(curr.classification),
+                      total: curr._count,
+                    },
+                  ];
+                },
+                []
+              )}
             />
 
             <Card
@@ -170,11 +147,14 @@ export default function Dashboard() {
               textInformation={{
                 label: dashboardData
                   ? `${moment(
-                      new Date(dashboardData.nextMeeting.createdAt)
+                      new Date(dashboardData.nextMeeting.meetingDateTime)
                     ).format("DD/MM/YYYY, HH:mm")}`
                   : "Informação não identificada",
                 data: dashboardData
                   ? `${dashboardData.nextMeeting.title}`
+                  : "---",
+                description: dashboardData
+                  ? `Parceria: ${dashboardData.nextMeeting.Partner.name}`
                   : "---",
               }}
             />
